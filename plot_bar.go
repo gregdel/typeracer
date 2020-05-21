@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"sort"
 	"time"
 
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/vg"
+	"gonum.org/v1/plot/vg/draw"
 )
 
 type dataBar struct {
@@ -78,7 +80,7 @@ func newDataBar(d dataType, races []*Race) (*dataBar, error) {
 	data.y = make([]float64, len(dates))
 	for i, date := range dates {
 		data.x[i] = fmt.Sprintf(
-			"%s (%.0f races)",
+			"%s\n(%.0f races)",
 			avgPerDay[date].date.Format("Jan 2"),
 			avgPerDay[date].weight)
 		data.y[i] = avgPerDay[date].value
@@ -112,6 +114,9 @@ func getBarsPlot(d dataType, races []*Race) (*plot.Plot, error) {
 
 	p.X.Tick.Color = colorFg
 	p.X.Tick.Label.Color = colorFg
+	p.X.Tick.Label.Rotation = math.Pi / 4
+	p.X.Tick.Label.XAlign = draw.XRight
+	p.X.Tick.Label.YAlign = draw.YTop
 	p.X.Color = colorFg
 
 	p.Y.Tick.Color = colorFg
