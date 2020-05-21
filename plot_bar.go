@@ -76,6 +76,13 @@ func newDataBar(d dataType, races []*Race) (*dataBar, error) {
 
 	sort.Slice(dates, func(i, j int) bool { return dates[j]-dates[i] > 0 })
 
+	days := len(dates)
+	if days > 10 {
+		dates = dates[days-10:]
+	} else {
+		dates = dates[:days]
+	}
+
 	data.x = make([]string, len(dates))
 	data.y = make([]float64, len(dates))
 	for i, date := range dates {

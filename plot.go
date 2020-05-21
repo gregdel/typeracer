@@ -25,8 +25,8 @@ type dataType string
 const (
 	dataTypeWPM            dataType = "WMP"
 	dataTypeAccuracy       dataType = "Accuracy"
-	dataTypeWPMPerDday     dataType = "WMP per day"
-	dataTypeAccuracyPerDay dataType = "Accuracy per day"
+	dataTypeWPMPerDday     dataType = "WMP per day (last 10 days)"
+	dataTypeAccuracyPerDay dataType = "Accuracy per day (last 10 days)"
 )
 
 func createPlot() error {
